@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\input{packages.tex}
+%%%%%%%%%%%%%%%%% header and footer %%%%%%%%%%%%%%%%%%%%%
+\lhead{\includegraphics[scale=0.12]{TU-delft.png}}
+\rhead{{Space Embedded Systems}}
+\lfoot{Final Assignment -- Solar Panel Drive Mechanism}    %{Assignment}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+%%%%%%%%%%%%%%%%% header and footer %%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Cover %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center 
+\setlength{\headheight}{15pt}
+\includegraphics[scale=0.45]{TU-delft.png}\\[1.5cm] 
+
+\textsc{\LARGE Delft University of Technology}\\[2cm]
+\textsc{\Large Space Embedded Systems\\ AE4S20 }\\[1cm] 
+
+\HRule \\[0.2cm]
+{\huge \bfseries Solar Panel Drive Mechanism\\[0.4cm]} % Title of your document
+\HRule \\[0.1cm]
+\vfill
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+ Maxi Mira Gallbrecht & 4757289 \\
+ Tiago Sousa Costa &  4832507
+    \end{tabular}
+\end{table}
+\end{titlepage}
+\setlength{\headheight}{52pt}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%% Cover %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\setcounter{page}{1}
+	\pagenumbering{roman}
+	\pagebreak
+	\tableofcontents
+	\cleardoublepage
+	\pagebreak
+	%\setcounter{page}{1}
+	\pagenumbering{arabic}
+	\pagestyle{fancy}
+
+
+\input{Chapters/1.intro.tex}
+\pagebreak
+\input{Chapters/2.solarpanel.tex}
+\pagebreak
+\input{Chapters/3.mechatronics.tex}
+\pagebreak
+\input{Chapters/4.failure.tex}
+\pagebreak
+\input{Chapters/5.design.tex}
+\pagebreak
+\input{Chapters/6.fdir.tex}
+\pagebreak
+\input{Chapters/7.software.tex}
+\pagebreak
+\input{Chapters/8.implementation.tex}
+\pagebreak
+\input{Chapters/9.conclusion.tex}
+\pagebreak
+
+
+
+\nocite{lecture_slides}
+
+
+
+\begin{appendices}
+\appendix
+\section{- Source code (Arduino)}
+\subsection{\texttt{stepper.ino} - Master board}
+\label{appendix:master}
+\lstinputlisting[language=c++, basicstyle=\scriptsize\ttfamily]{source_code/stepper.ino}
+
+\pagebreak
+\subsection{\texttt{stepper\_slave.ino} - Slave board}
+\label{appendix:slave}
+\lstinputlisting[language=c++, basicstyle=\scriptsize\ttfamily]{source_code/stepper_slave.ino}
+
+\end{appendices}
+
+\pagebreak
+\bibliographystyle{acm}
+\bibliography{mybib}
+
+\end{document}

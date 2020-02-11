@@ -1,0 +1,117 @@
+\usepackage[table]{xcolor} %colour cells in tables
+\usepackage[bottom]{footmisc} % footnotes at the bottom
+%\usepackage{indentfirst}
+\usepackage{pdfpages}
+\renewcommand{\baselinestretch}{1.5} 
+%% Language and font encodings
+\usepackage[T1]{fontenc}
+\usepackage{array}
+%% Sets page size and margins
+
+%\linespread{1.3} % spacing between lines - 1.3 for space and half
+\usepackage{fancyhdr}
+\usepackage[top=2.6cm, bottom=4.1cm, right=2cm, left=2cm, headsep=1.1cm]{geometry}
+\usepackage{listings}
+
+\setlength{\headheight}{52pt}
+\usepackage{fontspec}
+\usepackage{multicol}
+%centered text
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
+\usepackage{listings}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Matlab,
+  showstringspaces=false,
+   numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+\lstset{style=customc}
+\usepackage{matlab-prettifier}
+
+\usepackage{textcomp}
+\usepackage{graphicx}        %imagens
+\usepackage{siunitx}
+\usepackage{units}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage[all]{nowidow}           %para evitar frases orfãs
+\usepackage{float} 
+\usepackage{hyperref}
+\def\UrlBreaks{\do\/\do-}
+% \usepackage[hyphenbreaks]{breakurl}
+% \usepackage[hyphens]{url}
+\usepackage[nottoc,notlof,notlot]{tocbibind} 
+\setcounter{tocdepth}{3} %don't have subsubsubsections on table of contents
+\usepackage{ragged2e}
+\usepackage{refcount}
+%\usepackage[noadjust]{cite}
+\usepackage{tocloft}
+
+\usepackage[titletoc,title]{appendix}
+
+\usepackage[justification=centering]{caption}
+\usepackage{subcaption}
+
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{tabularx}  % split table lines
+    \newcolumntype{L}{>{\centering\arraybackslash}X}
+    \renewcommand\tabularxcolumn[1]{m{#1}} 
+    
+    \newcolumntype{R}{>{\RaggedRight\arraybackslash}X}
+    \renewcommand\tabularxcolumn[1]{m{#1}} %centering vertically
+    
+\usepackage{booktabs} %toprule and midrule
+\usepackage{pgfplots}
+
+%\usepackage{slashbox} %to divide cells in half with a backslash
+\usepackage{pifont}
+
+\let\savedegree\degree
+\let\degree\relax
+\usepackage{mathabx}
+\let\degree\savedegree
+\usepackage{wasysym}
+
+\usepackage{relsize} %big math symbols with \mathlarer{...}
+
+\pgfplotsset{compat=1.14}
+
+\usepackage{multirow}   %multirow for tables

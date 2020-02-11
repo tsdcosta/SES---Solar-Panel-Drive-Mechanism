@@ -1,0 +1,60 @@
+\section{Failure analysis}
+\label{sec:preliminary_analysis}
+ The components listed in the previous section are subject to faults and possible failures. Thus, this preliminary failure analysis will guide the system design. To exclude possible system failures, this chapter considers different design solutions that address each of the components' weak points and probable faults that may occur during operation. 
+
+\subsection{Stepper motor}
+\begin{itemize}
+    \item \textbf{Mechanical issues}\\
+    The stepper motors are not very accurate and may occasionally drift or block. The design needs to address these issues with sufficient redundancy to avoid failure. This includes methods to reset the stepper motor and having a redundant stepper motor, for example.
+    
+    \item \textbf{No power}\\
+    If the design fails to provide power to the stepper motor, the whole subsystem fails. A redundant stepper motor avoids this issue. 
+    
+    \item \textbf{Faulty feedback}\\
+    The controller cannot rely solely on the stepper's feedback. The controller manages the stepper motor angle internally, i.e., the motor does not provide its real step, but the difference between the initial step and the current position. In the case the motor blocks, the controller might perceive that the motor is rotating. The design has to avoid this issue with other means of feedback for example (such as the potentiometers).
+\end{itemize}
+
+
+
+\subsection{Potentiometer}
+\begin{itemize}
+    \item \textbf{Mechanical issues}\\
+    The potentiometers are going to be connected to the stepper motors, to emit feedback on the solar panel's angle. However, they can jam or block (alike the stepper motors) and this can prevent the proper functioning of the subsystem. Having redundant units helps with this issue.
+    
+    \item \textbf{Power loss}\\
+    If the power connection fails, the potentiometer may provide wrong feedback. Similarly to the stepper motors, a redundant potentiometer is a possible solution.
+    
+    \item \textbf{Faulty feedback}\\
+    The feedback from the potentiometer is not always reproducible (as addressed in \autoref{sec:mechatronics}). Having redundant units aids this issue, as the microcontroller can have more data to assess the state of the solar panel.
+    
+    
+\end{itemize}
+
+\subsection{Microcontroller}
+\begin{itemize}
+    \item  \textbf{No communication}\\ 
+    If the communication is lost between the microcontroller and the actuators and/or sensors, the system is incapable of operating successfully. Additionally, if there is no communication with the sensors, it is not possible to verify the panel's angular position. Possible solutions are implementing a reset frequency to restart the operations and/or a second microcontroller.
+    
+    \item \textbf{No power}\\
+    If the microcontroller has no power the operation of the solar panel drive mechanism fails. A second redundant microcontroller is a possible solution.   
+    \item \textbf{Faulty hardware} \\
+    The microcontroller is responsible for operating the complete system. Faulty operation of the Arduino Mega 2560 may lead to unpredictable issues. Since the microcontroller is an integrated and isolated unit, a solution for internal faults that can lead to the subsystem failure consists in implementing a second microcontroller.
+\end{itemize}
+
+\subsection{Other components}
+\begin{itemize}
+    \item \textbf{Computer issues}\\
+    In case the connection to the computer is lost, the user cannot control to the system. The system's power supply originates via USB. Hence, if the power supply fails, the system is not operative. Recovering from this fault is highly complex and computer redundancy will not be considered.
+    
+    \item \textbf{Faulty cabling}\\
+    The project set-up includes jumper cables and breadboards. Some connections may be loose or unsteady and can lead to communication or sensor feedback problems. Checking all the wiring before operating is therefore essential. 
+    
+    \item \textbf{LCD and LEDs failure}\\
+    The LCD and the LEDs provide visual feedback on the state of the system. In case that both are not operational, there is no visual feedback. However, the system's main objective -- driving and controlling the solar panel -- is not obstructed. Hardware redundancy or the reset of the complete system are valid options to address the visual feedback of the system.
+    
+    \item \textbf{Solar panel model (including axis) mechanical failure}\\
+    For this project the mock-up solar panel is attached to only one stepper motor and potentiometer via an axis. Mechanical failures of this scaled design are considered out of scope of this course.
+\end{itemize}
+
+ 
+ 

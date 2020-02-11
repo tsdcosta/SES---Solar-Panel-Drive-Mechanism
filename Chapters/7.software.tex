@@ -1,0 +1,132 @@
+\section{Software architecture}
+Following the hardware design and FDIR, this section elaborates on the system's software architecture. Appendix \ref{appendix:master} and \ref{appendix:slave} show the code of the master and slave Arduino respectively. The Arduino software IDE is an application that conveniently allows one to write and alter the code and upload it directly to the boards, which are then operated from the Arduino IDE serial monitor.
+
+\subsection{General setup}
+After including the libraries needed for the operation of the stepper motor, LCD, and various Arduino functions, the used constants, variables, flags, and actuator and sensor pins are initialized. Serial communication is established and allows for more detailed feedback regarding the systems' status. 
+
+The user commands the solar panel drive mechanism through the serial monitor. The system asks to receive an angle within a certain range. If the user input is not located within this range, the angle is set to the lowest and highest possible angle depending on the input given. The system informs the user about the input provided and how the system is reacting to it, compare function \textit{$check_input()$} in appendix \ref{appendix:master}. Before the motor rotates the direction in which the rotation shall be performed is checked. This is necessary since the potentiometers cannot support the continuous rotation of the stepper motor and constrain the motor's movement to a range of 270\degree \pm 10\degree. While the motors are in standby each of the green LEDs is on. Rotates a motor the green and red LED of the respective motor signals its activity. Is a motor considered to be not operational, e.g. a reset of the motor angle has failed, the red LED is switched on. 
+
+
+
+
+After the stepper motor's rotation of the solar panel, the stepper motor's and the potentiometers' feedbacks are read. 
+
+
+
+%init_value 
+in order to validate the stepper motor's position 
+use estimated potentiometer functions further explained in \autoref{sec:experimental}. 
+retrieve the feedback on the potentiometers output 
+angle obtained is compared
+If both potentiometers agree on the range in which the angle is located the average of both potentiometers is used to verify the stepper motor's position
+this way, at least one potentiometer has to agree with the stepper motor in order to continue the operation.
+In case both potentiometers disagree with the user input's angle after the motor has moved to its assigned position a command is sent to reset the motors position to the potentiometers feedback.
+Further, if both potentiometers agree on the current angle of the solar panel but disagree with the stepper motor's feedback it is assumed, that the motor has drifted. The system is then performing a reset of the stepper motor, meaning a reset of the motor's angle to the potentiometer's value. The motor reset can also be performed manualy by setting pin 21 to HIGH. If for any reason, such as no matching potentiometer value, a stepper motor reset cannot be performed, the system switches to the redundant unit and stepper motor 2 is now in operation.
+
+Additionally, the system possesses a safe mode, which functions likewise to the motor reset as an interrupt. Here, if pin 20 is triggered and set to HIGH the active motor moves into the defined minimum angle and the system is forced into standby.
+
+
+
+include libaries
+initialize variables, etc.
+
+operating the actuators and sensors
+
+panel driving
+verification
+feedback (visual)
+fault detection
+
+interrupts: safe mode, reset
+
+
+
+\subsection{Master vs slave board architecture}
+The microcontroller are operating in hot standby, while the second board functions as a watchdog.
+
+The master Arduino transmits every second to the slave Arduino, in order to reset the watchdog's timer.
+
+
+
+
+
+
+add graphics
+
+
+
+
+generally, before switching components send reset command, if not effective switch component
+
+
+motor does not give direct feed back and no encoder 
+following an potentiometer is used to keep track and give feedback
+
+
+redefine zero angle of stepper with poti position
+
+
+tolerance  at 0 for serial input
+7 for 
+
+reset button, cable used:
+
+
+to do:
+
+
+activate second motor, check if working:    did that
+
+integrate second board, establish communication: check
+
+integrate second poti -> big range until glued
+compare poti results  :
+are they within the same margin of values (approx. 120)
+as long as one poti agrees with stepper keep stepper running
+if both disagree switch to stepper two
+
+decide if motor 1 should still be working
+
+reset button. done
+alternative if both potis dont aggree, mission over, sucker.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+reset of motor one if out of range
+
+reset options
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+integrate watchdog takeover
+master updating status: hey I'm fine
+slave: cool, dude
+if master not sending * ..... *
+slave: dude, think you're dead, taking over now
+slave receiving and sending commands
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+led feedback: done
+red not working
+green operational, on stand by
+green plus 
+
+
+
+%not happening: attach third poti to second motor with plastic, use heat
+
+
+
+poti within range of 100 950
+define possible usable angles as user input
+
+
+
+
+don't forget to reference source code
+\ref{appendix:master}
+\ref{appendix:slave}
